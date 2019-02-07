@@ -8,6 +8,7 @@ var app = express();
 
 var student_routes = require('./api/routes/students'); 
 var course_routes = require('./api/routes/courses'); 
+var grade_routes = require('./api/routes/grades'); 
 
 mongoose.connect(
 	'mongodb://localhost:27017/mydatabase',
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/api/estudiantes', student_routes);
 app.use('/api/cursos', course_routes);
+app.use('/api/notas', grade_routes);
 
 module.exports = app;
 
