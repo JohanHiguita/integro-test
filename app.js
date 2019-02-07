@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 var app = express();
 
 var student_routes = require('./api/routes/students'); 
+var course_routes = require('./api/routes/courses'); 
 
 mongoose.connect(
 	'mongodb://localhost:27017/mydatabase',
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.use('/api/estudiantes', student_routes);
+app.use('/api/cursos', course_routes);
 
 module.exports = app;
 

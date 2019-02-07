@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 
-const Student = require ('../models/student');
+const Course = require ('../models/course');
 
-//Show all students
+//Show all courses
 router.get("/", (req, res, next) => {
-	Student.find()
+	Course.find()
 	.exec()
 	.then(docs => {
 		console.log(docs);    
@@ -20,10 +20,10 @@ router.get("/", (req, res, next) => {
 	});
 });
 
-//show one student
-router.get("/:studentId", (req, res, next) => {
-	const id = req.params.studentId;
-	Student.findById(id)
+//show one course
+router.get("/:courseId", (req, res, next) => {
+	const id = req.params.courseId;
+	Course.findById(id)
 	.exec()
 	.then(doc => {
 		console.log("From database", doc);
@@ -43,17 +43,16 @@ router.get("/:studentId", (req, res, next) => {
 
 //Create Student
 router.post("/", (req, res, next) => {
-	const student = new Student({
-		nombre: req.body.nombre,
-		edad: req.body.edad
+	const course = new Course({
+		nombre: req.body.nombre
 	});
-	student
+	course
 	.save()
 	.then(result => {
 		console.log(result);
 		res.status(201).json({
-			message: "Handling POST requests to /students",
-			createdStudent: result
+			message: "Handling POST requests to /courses",
+			createdCourse: result
 		});
 	})
 	.catch(err => {
@@ -64,18 +63,17 @@ router.post("/", (req, res, next) => {
 	});
 });
 
-// Edit Student
-router.put("/:studentId", (req, res, next) => {
-	const id = req.params.studentId;
-	const student = {
-		nombre: req.body.nombre,
-		edad: req.body.edad
+// Edit Course
+router.put("/:courseId", (req, res, next) => {
+	const id = req.params.courseId;
+	const course = {
+		nombre: req.body.nombre
 	};
 	// const updateOps = {};
 	// for (const ops of req.body) {
 	// 	updateOps[ops.propName] = ops.value;
 	// }
-	Student.update({ _id: id }, student)
+	Course.update({ _id: id }, course)
 	.exec()
 	.then(result => {
 		console.log(result);
@@ -89,9 +87,9 @@ router.put("/:studentId", (req, res, next) => {
 	});
 });
 
-router.delete("/:studentId", (req, res, next) => {
-	const id = req.params.studentId;
-	Student.remove({ _id: id })
+router.delete("/:courseId", (req, res, next) => {
+	const id = req.params.courseId;
+	Course.remove({ _id: id })
 	.exec()
 	.then(result => {
 		res.status(200).json(result);
