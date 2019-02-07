@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
 	.catch(err => {
 		console.log(err);
 		res.status(500).json({
-			error: err + "hero"
+			error: err
 		});
 	});
 });
@@ -44,8 +44,8 @@ router.get("/:studentId", (req, res, next) => {
 //Create Student
 router.post("/", (req, res, next) => {
 	const student = new Student({
-		nombre: req.body.nombre,
-		edad: req.body.edad
+		name: req.body.Nombre,
+		age: req.body.Edad
 	});
 	student
 	.save()
@@ -68,8 +68,8 @@ router.post("/", (req, res, next) => {
 router.put("/:studentId", (req, res, next) => {
 	const id = req.params.studentId;
 	const student = {
-		nombre: req.body.nombre,
-		edad: req.body.edad
+		name: req.body.Nombre,
+		age: req.body.Edad
 	};
 	// const updateOps = {};
 	// for (const ops of req.body) {
@@ -89,6 +89,7 @@ router.put("/:studentId", (req, res, next) => {
 	});
 });
 
+//Delete Student
 router.delete("/:studentId", (req, res, next) => {
 	const id = req.params.studentId;
 	Student.remove({ _id: id })

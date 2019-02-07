@@ -3,7 +3,7 @@
 var mongoose = require("mongoose");
 
 var course_schema = mongoose.Schema({
-	nombre: String
+	name: String
 });
 
 module.exports = mongoose.model("Course", course_schema);

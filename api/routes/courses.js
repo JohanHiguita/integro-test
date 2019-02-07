@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
 	.catch(err => {
 		console.log(err);
 		res.status(500).json({
-			error: err + "hero"
+			error: err
 		});
 	});
 });
@@ -44,7 +44,7 @@ router.get("/:courseId", (req, res, next) => {
 //Create Student
 router.post("/", (req, res, next) => {
 	const course = new Course({
-		nombre: req.body.nombre
+		name: req.body.Nombre
 	});
 	course
 	.save()
@@ -67,7 +67,7 @@ router.post("/", (req, res, next) => {
 router.put("/:courseId", (req, res, next) => {
 	const id = req.params.courseId;
 	const course = {
-		nombre: req.body.nombre
+		name: req.body.Nombre
 	};
 	// const updateOps = {};
 	// for (const ops of req.body) {
@@ -87,6 +87,7 @@ router.put("/:courseId", (req, res, next) => {
 	});
 });
 
+//DElete Course
 router.delete("/:courseId", (req, res, next) => {
 	const id = req.params.courseId;
 	Course.remove({ _id: id })
