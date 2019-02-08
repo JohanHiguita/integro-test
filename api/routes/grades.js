@@ -130,6 +130,5 @@ router.get("/:studentId", (req, res, next) => {
 });
 
 
-});
 
 module.exports = router;
