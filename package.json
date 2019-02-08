@@ -1,0 +1,24 @@
+{
+  "name": "integro-test",
+  "version": "1.0.0",
+  "description": "Test for job application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohanHiguita/integro-test.git"
+  },
+  "keywords": [
+    "Rest",
+    "API",
+    "MongoDB"
+  ],
+  "author": "Johan Higuita",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohanHiguita/integro-test/issues"
+  },
+  "homepage": "https://github.com/JohanHiguita/integro-test#readme"
+}
