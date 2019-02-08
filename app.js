@@ -12,7 +12,7 @@ var grade_routes = require('./api/routes/grades');
 var average_route = require('./api/routes/average'); 
 
 mongoose.connect(
-	'mongodb://johan-higuita:'+ process.env.MONGO_ATLAS_PW +'@integro-test-shard-00-00-zdcy8.mongodb.net:27017,integro-test-shard-00-01-zdcy8.mongodb.net:27017,integro-test-shard-00-02-zdcy8.mongodb.net:27017/test?ssl=true&replicaSet=integro-test-shard-0&authSource=admin&retryWrites=true',
+	'mongodb://johan-higuita:johandim1913@integro-test-shard-00-00-zdcy8.mongodb.net:27017,integro-test-shard-00-01-zdcy8.mongodb.net:27017,integro-test-shard-00-02-zdcy8.mongodb.net:27017/test?ssl=true&replicaSet=integro-test-shard-0&authSource=admin&retryWrites=true',
 	{ useNewUrlParser: true }
 	);
 mongoose.connection.on("error", function(e) { console.error(e); });
