@@ -87,7 +87,7 @@ router.put("/:courseId", (req, res, next) => {
 	});
 });
 
-//DElete Course
+//Delete Course
 router.delete("/:courseId", (req, res, next) => {
 	const id = req.params.courseId;
 	Course.remove({ _id: id })

@@ -116,9 +116,7 @@ router.get("/:studentId", (req, res, next) => {
 	var grade_numbers = [];
 	const cursor = Grade.find({student_id: student_id}).cursor();
 	cursor.on('data', function(doc) {
-		console.log(doc.grade_number);
 		grade_numbers.push(doc.grade_number);
-		console.log(grade_numbers);
 	})
 	.on('error', function (err) {
 		console.log(err);
