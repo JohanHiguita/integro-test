@@ -15,31 +15,31 @@ router.get("/", (req, res, next) => {
 	.catch(err => {
 		console.log(err);
 		res.status(500).json({
-			error: err + "hero"
+			error: err
 		});
 	});
 });
 
 //show one grade
-router.get("/:gradeId", (req, res, next) => {
-	const id = req.params.gradeId;
-	Grade.findById(id)
-	.exec()
-	.then(doc => {
-		console.log("From database", doc);
-		if (doc) {
-			res.status(200).json(doc);
-		} else {
-			res
-			.status(404)
-			.json({ message: "No valid entry found for provided ID" });
-		}
-	})
-	.catch(err => {
-		console.log(err);
-		res.status(500).json({ error: err });
-	});
-});
+// router.get("/:gradeId", (req, res, next) => {
+// 	const id = req.params.gradeId;
+// 	Grade.findById(id)
+// 	.exec()
+// 	.then(doc => {
+// 		console.log("From database", doc);
+// 		if (doc) {
+// 			res.status(200).json(doc);
+// 		} else {
+// 			res
+// 			.status(404)
+// 			.json({ message: "No valid entry found for provided ID" });
+// 		}
+// 	})
+// 	.catch(err => {
+// 		console.log(err);
+// 		res.status(500).json({ error: err });
+// 	});
+// });
 
 //Create Grade
 router.post("/", (req, res, next) => {
@@ -54,7 +54,7 @@ router.post("/", (req, res, next) => {
 	.then(result => {
 		console.log(result);
 		res.status(201).json({
-			message: "Handling POST requests to /students",
+			message: "Handling POST requests to api/notas",
 			createdGrade: result
 		});
 	})
@@ -108,5 +108,26 @@ router.delete("/:gradeId", (req, res, next) => {
 	});
 });
 
+//Get students grades
+router.get("/:studentId", (req, res, next) => {
+	const student_id = req.params.studentId;
+
+	//Obtener las notas del student_id:
+	var grade_numbers = [];
+	const cursor = Grade.find({student_id: student_id}).cursor();
+	cursor.on('data', function(doc) {
+		console.log(doc.grade_number);
+		grade_numbers.push(doc.grade_number);
+		console.log(grade_numbers);
+	})
+	.on('error', function (err) {
+		console.log(err);
+	}).on('end', function () {
+		res.status(200).json(grade_numbers);
+	})
+	
+	
+	
+});
 
 module.exports = router;
